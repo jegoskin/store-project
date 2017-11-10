@@ -1,20 +1,19 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { store } from './index';
+import { Route } from 'react-router-dom';
+
 //Function
-import { trans, isInRole } from './global';
-import { toastr } from 'react-redux-toastr';
-//Actions
-import { push } from 'react-router-redux';
-import { load, loadDone } from './redux/actions/app';
+import { trans } from './global';
+
 //Icons
-import Code from 'material-ui/svg-icons/action/code';
 import Menu from 'material-ui/svg-icons/navigation/menu';
+import AddIcon from 'material-ui/svg-icons/content/add';
+
 
 //Pages
 import Index from './pages/index/Index';
+import AddProduct from './pages/product/addProduct';
 
-export const drawer_width = 400;
+export const drawer_width = 300;
 
 export const drawer_nav = [
 	{
@@ -24,60 +23,20 @@ export const drawer_nav = [
 		leftIcon: <Menu />
 	},
 	{
-		label: trans('About'),
+		label: trans('Add product'),
+		path: '/add-product/',
 		role: 'user',
-		leftIcon: <div />,
-		subItems: [
-			{
-				label: trans('About'),
-				path: '/about',
-				leftIcon: <div />
-			}
-		]
-	}
+		leftIcon: <AddIcon />
+	},
 ]
 
-export const menu_nav = [
-	{
-		label: trans('Debug'),
-		rightIcon: <Code />,
-		role: 'debug',
-		subItems: [
-			{
-				label: 'Message',
-				rightIcon: <Code />,
-				action: () => {
-					toastr.message('Debug', 'Message');
-				}
-			},
-			{
-				label: 'Load View',
-				action: () => {
-					store.dispatch(load('Debug loading'))
-					setTimeout(() => {
-						store.dispatch(loadDone('Debug loading'))
-					}, 5000);
-					store.dispatch(load('Debug loading 2'))
-					setTimeout(() => {
-						store.dispatch(loadDone('Debug loading 2'))
-					}, 3000);
-				}
-			}
-		]
-	},
-	{
-		label: trans('Administration'),
-		action: () => {
-			store.dispatch(push('/administration'));
-		}
-	}
-]
+export const menu_nav = []
 
 export class Routes extends React.Component {
 	render() {
 		return (<div>
 			<Route exact path="/" component={Index} />
-			<Route exact path="/about" component={isInRole('user')? () => <div className="page"><h3>About</h3></div> : () => <Redirect to="/" />} />
+			<Route exact path="/add-product/" component={AddProduct} />
 		</div>)
 	}
 }

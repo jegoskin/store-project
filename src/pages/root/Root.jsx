@@ -15,16 +15,12 @@ import Menu from 'material-ui/svg-icons/navigation/menu';
 //Functions
 import { userPhoto } from '../../global';
 import { trans, isInRole } from '../../global';
-import { toastr } from 'react-redux-toastr';
 
 import config from '../../lib/base/Config';
 import { drawer_nav, menu_nav, Routes, drawer_width } from '../../navigation';
 
 
 class Root extends Component {
-  componentDidMount() {
-    toastr.info("App", "Started");
-  }
   handleNavClick = (item) => {
     if (item.path) {
       this.props.drawerToggle(false);

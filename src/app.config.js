@@ -1,16 +1,15 @@
 const config = {
-	login: true,
-	ignoreRoles: false,
+	login: false,
+	ignoreRoles: true,
 	roles: [
 		'user',
-		'admin',
 		'debug'
 	],
 	app: {
 		dns: 'blank',
 		version: 'v0.0.1',
-		page_title: 'Blank',
-		header: 'Test'
+		page_title: 'Offline Store',
+		header: 'Offline Store'
 	},
 	lang: {
 		base: 'en'
@@ -18,11 +17,11 @@ const config = {
 	server: {
 		rest: {
 			dns: '',
-			url: 'api/v1/Test'
+			url: ''
 		},
 		authentification: {
 			dns: '',
-			url: 'login'	
+			url: ''	
 		},
 		translation: {
 			dns: '',
